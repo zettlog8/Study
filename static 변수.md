@@ -14,7 +14,73 @@
 - static 변수는 메모리가 상수, 리터럴 등이 놓인 data 영역에 놓이고, stack이나 heap 메모리에 놓이지 않는다. 
   이처럼 놓이는 공간도 다르고 클래스에서 공용되는 변수라고해서 클래스 변수라고도 한다.
 
+<code>
+  <pre>
+package staticEx;
 
+public class Student {
+
+	private static int serialNum = 10000;
+	
+	int studentID;
+	String studentName;
+	
+	public Student() {
+		serialNum++;
+		studentID = serialNum;
+	}
+
+	public static int getSerialNum() {
+		/*int i = 10;	//지역변수는 static 안에 써도 상관없음.
+		
+		i++;
+		System.out.println(i);*/
+		
+		//studentName = "홍길동";	//인스턴스 변수(=멤버변수)
+		//인스턴스 변수는 new가 될 때 생성이 되는데 여기서는
+		// 생성되지도 않은 인스턴스 변수를 놓게 되는 것.
+		
+		return serialNum;	//static 변수(=클래스 변수)
+	}
+	
+}
+
+
+
+
+
+
+package staticEx;
+
+public class StudentTest1 {
+
+	public static void main(String[] args) {
+
+		Student studentJ = new Student();
+		System.out.println(Student.getSerialNum());
+	
+		Student studentT = new Student();
+		System.out.println(studentT.studentID);
+		
+		
+	System.out.println(Student.getSerialNum());
+	System.out.println(Student.getSerialNum());
+	
+	
+	}
+}
+
+-------------------출력-------------------
+10001
+10002
+10002
+10002
+
+</code>
+  </pre>
+  
+  
+  
 지역 변수(로컬 변수) 
 - 함수 내부에 선언.
 - 함수 내부에서만 사용.
